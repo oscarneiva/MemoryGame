@@ -6,20 +6,20 @@
 
 package memorygame;
 
+import java.util.Random;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
+import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 
 /**
  *
  * @author Oscar Neiva
  */
 public class GameView {
-    private Rectangle[] cards;
+    private Button[] cardsBtns;
     private HBox row1, row2, row3;
     private VBox mainBox;
     private Scene scene;
@@ -29,15 +29,21 @@ public class GameView {
     }
     
     public void initializeComponents(){
-        cards = new Rectangle[12];
-        for (int i = 0; i < cards.length; i++) {
-            cards[i] = new Rectangle();
-            Image img = new Image("./images/0.png");
-            cards[i].setFill(new ImagePattern(img));
-        }
+        Random random = new Random();
+        CardController cardController = new CardController();
+        cardsBtns = new Button[12];
+        
+        cardsBtns[0] = new Button();
+        cardsBtns[0].setText("?");
+        cardsBtns[0].setStyle("-fx-background-color: #fff; ");
+        cardsBtns[0].setPrefSize(50, 50);
+        cardsBtns[0].setOnAction(e->{
+            cardsBtns[0].setGraphic(new ImageView(cardController.readCards()[0].getImage()));
+            cardsBtns[0].setPrefSize(50, 50);
+        });    
         
         mainBox = new VBox();
-        mainBox.getChildren().addAll(cards[0]);
+        mainBox.getChildren().addAll(cardsBtns[0]);
         mainBox.setAlignment(Pos.CENTER);
         
         scene = new Scene(mainBox);
