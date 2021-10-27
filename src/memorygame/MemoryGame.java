@@ -27,7 +27,7 @@ public class MemoryGame extends Application{
         stage.setWidth(800);
         stage.setTitle("Crypto Memory game");
         
-        GameView gameView = new GameView();
+        MainScene gameView = new MainScene();
         stage.setScene(gameView.getScene());
         stage.show();
     }

@@ -25,20 +25,20 @@ import javafx.scene.layout.VBox;
  *
  * @author Oscar Neiva
  */
-public class GameView {
+public class MainScene {
     private Button[] cardsBtns;
     private HBox row1, row2, row3, header;
     private VBox mainBox;
     private Scene scene;
     private int counter;
     
-    public GameView(){
+    public MainScene(){
         initializeComponents();
     }
     
     public void initializeComponents(){
         Random random = new Random();
-        GameController cardController = new GameController();
+        CardController cardController = new CardController();
         cardsBtns = new Button[12];
         
         Label attempts = new Label("Attempts: " + counter);

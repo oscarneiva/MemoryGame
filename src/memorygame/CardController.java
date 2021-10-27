@@ -14,11 +14,11 @@ import javafx.scene.image.Image;
  *
  * @author Oscar Neiva
  */
-public class GameController {
+public class CardController {
     private Card card;
     private Card[] cards;
     
-    public GameController(){
+    public CardController(){
         cards = new Card[12];
         cards[0] = new Card("Ada", new Image("/images/ada.png", 100, 100, false, false),true);
         cards[1] = new Card("Bitcoin", new Image("/images/bitcoin.png", 100, 100, false, false),true);
@@ -33,10 +33,10 @@ public class GameController {
         cards[10] = new Card("Shiba", new Image("/images/shiba.png", 100, 100, false, false),true);
         cards[11] = new Card("XRP", new Image("/images/xrp.png", 100, 100, false, false),true);
     
-        cards = shuffle(cards);
+        cards = shuffleCards(cards);
     }
     
-    public Card[] shuffle(Card[] arr){
+    public Card[] shuffleCards(Card[] arr){
         Random random = new Random();
 
         for (int i = 0; i < arr.length; i++) {
