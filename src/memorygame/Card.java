@@ -15,10 +15,12 @@ import javafx.scene.image.Image;
 public class Card {
     private String name;
     private Image image;
+    private boolean isTurnedOver;
 
-    public Card(String name, Image image) {
+    public Card(String name, Image image, boolean isTurnedOver) {
         this.name = name;
         this.image = image;
+        this.isTurnedOver = isTurnedOver;
     }
 
     public String getName() {
@@ -36,4 +38,13 @@ public class Card {
     public void setImage(Image image) {
         this.image = image;
     }
+
+    public boolean isIsTurnedOver() {
+        return isTurnedOver;
+    }
+
+    public void setIsTurnedOver(boolean isTurnedOver) {
+        this.isTurnedOver = isTurnedOver;
+    }
+
 }
