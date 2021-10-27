@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -26,9 +27,10 @@ import javafx.scene.layout.VBox;
  */
 public class GameView {
     private Button[] cardsBtns;
-    private HBox row1, row2, row3;
+    private HBox row1, row2, row3, header;
     private VBox mainBox;
     private Scene scene;
+    private int counter;
     
     public GameView(){
         initializeComponents();
@@ -39,6 +41,12 @@ public class GameView {
         GameController cardController = new GameController();
         cardsBtns = new Button[12];
         
+        Label attempts = new Label("Attempts: " + counter);
+        attempts.setStyle("-fx-text-fill: #03DAC6; -fx-font: 80px Roboto; -fx-font-weight: bold;");
+        header = new HBox();
+        header.getChildren().add(attempts);
+        header.setAlignment(Pos.TOP_CENTER);
+        
         for (int i = 0; i < cardsBtns.length; i++) {
             cardsBtns[i] = new Button();
             cardsBtns[i].setStyle("-fx-background-color: #6200EE; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,1), 10, 0, 0, 0);");
@@ -46,11 +54,19 @@ public class GameView {
             cardsBtns[i].setId(cardController.getCards()[i].getName());
             
             int I = i;
-            cardsBtns[I].setOnAction(e->{
-                cardsBtns[I].setStyle("-fx-background-color: transparent");
-                cardsBtns[I].setGraphic(new ImageView(cardController.getCards()[I].getImage()));   
-                System.out.println(cardController.getCards()[I].getName());
-            }); 
+            cardsBtns[I].setOnMouseClicked(e->{
+                counter++;
+                attempts.setText("Attempts: " + counter);
+                if(cardController.getCards()[I].getIsTurnedOver()){
+                    cardsBtns[I].setStyle("-fx-background-color: transparent");
+                    cardsBtns[I].setGraphic(new ImageView(cardController.getCards()[I].getImage()));
+                    cardController.getCards()[I].setIsTurnedOver(false);
+                }else if(!cardController.getCards()[I].getIsTurnedOver()){
+                    cardsBtns[I].setStyle("-fx-background-color: #6200EE; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,1), 10, 0, 0, 0);");
+                    cardsBtns[I].setGraphic(null); 
+                    cardController.getCards()[I].setIsTurnedOver(true);
+                }
+            });       
         }
         
         row1 = new HBox(20);
@@ -72,7 +88,7 @@ public class GameView {
         row3.setAlignment(Pos.BOTTOM_CENTER); 
         
         mainBox = new VBox(20);
-        mainBox.getChildren().addAll(row1,row2,row3);
+        mainBox.getChildren().addAll(header,row1,row2,row3);
         mainBox.setAlignment(Pos.CENTER);
         mainBox.setStyle("-fx-background-color: #fff");
         

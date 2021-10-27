@@ -39,7 +39,7 @@ public class Card {
         this.image = image;
     }
 
-    public boolean isIsTurnedOver() {
+    public boolean getIsTurnedOver() {
         return isTurnedOver;
     }
 
