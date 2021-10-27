@@ -6,6 +6,7 @@
 
 package memorygame;
 
+import java.awt.Color;
 import java.util.Random;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -33,18 +34,39 @@ public class GameView {
         CardController cardController = new CardController();
         cardsBtns = new Button[12];
         
-        cardsBtns[0] = new Button();
-        cardsBtns[0].setText("?");
-        cardsBtns[0].setStyle("-fx-background-color: #fff; ");
-        cardsBtns[0].setPrefSize(50, 50);
-        cardsBtns[0].setOnAction(e->{
-            cardsBtns[0].setGraphic(new ImageView(cardController.readCards()[0].getImage()));
-            cardsBtns[0].setPrefSize(50, 50);
-        });    
+        for (int i = 0; i < cardsBtns.length; i++) {
+            cardsBtns[i] = new Button();
+            cardsBtns[i].setStyle("-fx-background-color: transparent");
+            cardsBtns[i].setGraphic(new ImageView(cardController.readCards()[6].getImage()));
+            int I = i;
+            cardsBtns[i].setOnAction(e->{
+                cardsBtns[I].setText("");
+                cardsBtns[I].setGraphic(new ImageView(cardController.readCards()[random.nextInt(6)].getImage()));
+            }); 
+        }
+        
+        row1 = new HBox();
+        for (int i = 0; i < 4; i++) {
+            row1.getChildren().add(cardsBtns[i]);
+        }
+        row1.setAlignment(Pos.TOP_CENTER);
+        
+        row2 = new HBox();
+        for (int i = 4; i < 8; i++) {
+            row2.getChildren().add(cardsBtns[i]);
+        }
+        row2.setAlignment(Pos.CENTER); 
+        
+        row3 = new HBox();
+        for (int i = 8; i < 12; i++) {
+            row3.getChildren().add(cardsBtns[i]);
+        }
+        row3.setAlignment(Pos.BOTTOM_CENTER); 
         
         mainBox = new VBox();
-        mainBox.getChildren().addAll(cardsBtns[0]);
+        mainBox.getChildren().addAll(row1,row2,row3);
         mainBox.setAlignment(Pos.CENTER);
+        mainBox.setStyle("-fx-background-color: #000");
         
         scene = new Scene(mainBox);
     }

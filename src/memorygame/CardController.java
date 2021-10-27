@@ -17,16 +17,17 @@ public class CardController {
     private Card[] cards;
     
     public CardController(){
-        cards = new Card[6];
+        cards = new Card[7];
     }
     
     public Card[] readCards(){
-        cards[0] = new Card("Ada", new Image("/images/ada.png"));
-        cards[1] = new Card("Bitcoin", new Image("/images/bitcoin.png"));
-        cards[2] = new Card("Doge Coin", new Image("/images/doge.png"));
-        cards[3] = new Card("Ether", new Image("/images/ether.png"));
-        cards[4] = new Card("Shiba", new Image("/images/shiba.png"));
-        cards[5] = new Card("XRP", new Image("/images/xrp.png"));
+        cards[0] = new Card("Ada", new Image("/images/ada.png", 100, 100, false, false));
+        cards[1] = new Card("Bitcoin", new Image("/images/bitcoin.png", 100, 100, false, false));
+        cards[2] = new Card("Doge Coin", new Image("/images/doge.png", 100, 100, false, false));
+        cards[3] = new Card("Ether", new Image("/images/ether.png", 100, 100, false, false));
+        cards[4] = new Card("Shiba", new Image("/images/shiba.png", 100, 100, false, false));
+        cards[5] = new Card("XRP", new Image("/images/xrp.png", 100, 100, false, false));
+        cards[6] = new Card("card", new Image("/images/card.jpg", 100, 100, false, false));
         
         return cards;
     }
