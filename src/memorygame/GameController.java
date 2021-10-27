@@ -1,0 +1,58 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package memorygame;
+
+import java.util.Random;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+
+/**
+ *
+ * @author Oscar Neiva
+ */
+public class GameController {
+    private Card card;
+    private Card[] cards;
+    
+    public GameController(){
+        cards = new Card[12];
+        cards[0] = new Card("Ada", new Image("/images/ada.png", 100, 100, false, false));
+        cards[1] = new Card("Bitcoin", new Image("/images/bitcoin.png", 100, 100, false, false));
+        cards[2] = new Card("Doge Coin", new Image("/images/doge.png", 100, 100, false, false));
+        cards[3] = new Card("Ether", new Image("/images/ether.png", 100, 100, false, false));
+        cards[4] = new Card("Shiba", new Image("/images/shiba.png", 100, 100, false, false));
+        cards[5] = new Card("XRP", new Image("/images/xrp.png", 100, 100, false, false));
+        cards[6] = new Card("Ada", new Image("/images/ada.png", 100, 100, false, false));
+        cards[7] = new Card("Bitcoin", new Image("/images/bitcoin.png", 100, 100, false, false));
+        cards[8] = new Card("Doge Coin", new Image("/images/doge.png", 100, 100, false, false));
+        cards[9] = new Card("Ether", new Image("/images/ether.png", 100, 100, false, false));
+        cards[10] = new Card("Shiba", new Image("/images/shiba.png", 100, 100, false, false));
+        cards[11] = new Card("XRP", new Image("/images/xrp.png", 100, 100, false, false));
+    
+        cards = shuffle(cards);
+    }
+    
+    public Card[] shuffle(Card[] arr){
+        Random random = new Random();
+
+        for (int i = 0; i < arr.length; i++) {
+            int x = random.nextInt(arr.length);
+            int y = random.nextInt(arr.length);
+
+            Card aux = arr[x];
+            arr[x] = arr[y];
+            arr[y] = aux;
+        }
+
+        return arr;
+    }
+
+    public Card[] getCards() {
+        return cards;
+    }
+    
+}

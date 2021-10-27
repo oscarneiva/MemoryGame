@@ -23,8 +23,8 @@ public class MemoryGame extends Application{
     }
     
     public void start(Stage stage){
-        stage.setHeight(500);
-        stage.setWidth(500);
+        stage.setHeight(700);
+        stage.setWidth(800);
         stage.setTitle("Crypto Memory game");
         
         GameView gameView = new GameView();
