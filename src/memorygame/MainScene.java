@@ -55,12 +55,12 @@ public class MainScene {
             
             int I = i;
             cardsBtns[I].setOnMouseClicked(e->{
-                counter++;
-                attempts.setText("Attempts: " + counter);
+                attempts.setText("Attempts: " + counter/2);
                 if(cardController.getCards()[I].getIsTurnedOver()){
                     cardsBtns[I].setStyle("-fx-background-color: transparent");
                     cardsBtns[I].setGraphic(new ImageView(cardController.getCards()[I].getImage()));
                     cardController.getCards()[I].setIsTurnedOver(false);
+                    counter++;
                 }else if(!cardController.getCards()[I].getIsTurnedOver()){
                     cardsBtns[I].setStyle("-fx-background-color: #6200EE; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,1), 10, 0, 0, 0);");
                     cardsBtns[I].setGraphic(null); 
